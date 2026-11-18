@@ -3,3 +3,8 @@ packages: ["."]
 allowBuilds:
   esbuild: true
   sharp: true
+# Security overrides for transitive deps (Dependabot alerts). Remove once upstream bumps.
+overrides:
+  "fflate@>=0.7.0 <0.7.5": ^0.7.5 # via satori (ZIP64 infinite loop)
+  "minimatch@>=7.0.0 <11.0.1": ^11.0.1 # via eslint (globparts DoS)
+  "postcss-selector-parser@<6.1.5": ^6.1.5 # via @tailwindcss/typography (quadratic parsing)
