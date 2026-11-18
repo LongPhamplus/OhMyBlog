@@ -3,9 +3,9 @@ import { defineAstroPaperConfig } from "./src/types/config";
 export default defineAstroPaperConfig({
   site: {
     url: "https://ohmyblog-plogplus.pages.dev/",
-    title: "YOUR_HANDLE",
-    description: "Write-ups and research on web, binaries, Active Directory and DFIR.",
-    author: "YOUR_NAME",
+    title: "OhMyBlog",
+    description: "Blog, write-ups and research on web security, Active Directory and more.",
+    author: "LongPham",
     profile: "https://ohmyblog-plogplus.pages.dev/about/",
     ogImage: "default-og.jpg",
     lang: "en",
@@ -30,8 +30,7 @@ export default defineAstroPaperConfig({
   },
   socials: [
     { name: "github",   url: "https://github.com/LongPhamplus" },
-    { name: "x",        url: "https://x.com/username" },
-    { name: "linkedin", url: "https://www.linkedin.com/in/username/" },
+    { name: "mail",     url: "mailto:ploganonymous@gmail.com" },
   ],
   shareLinks: [
     { name: "x",        url: "https://x.com/intent/post?url=" },

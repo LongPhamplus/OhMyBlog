@@ -1,28 +1,27 @@
 ---
 title: "whoami"
-description: "Security engineer writing about web, binaries, Active Directory and DFIR."
+description: "LongPham — blog, write-ups and research on web security, Active Directory and more."
 ---
 
 ```console
 $ whoami
-your-handle
+LongPham
 
 $ cat /etc/motd
-Security engineer based in Vietnam. I break things in labs and write down
-how — and how to catch it.
+Blog, write-ups and research on web security, Active Directory and more.
+I break things in labs and write down how — and how to catch it.
 ```
 
-## Focus
+## What you'll find here
 
-- **Offense:** web exploitation, binary exploitation & reverse engineering, Active Directory
-- **Defense:** DFIR, malware analysis, detection engineering
+- **[Write-ups](/writeups/)** — retired Hack The Box / TryHackMe machines and finished CTFs
+- **[Research](/research/)** — vulnerability analysis and deep dives
+- **[Posts](/posts/)** — notes, tools and everything else
 
-## Currently
+## Contact
 
-- Working on: ...
-- Learning: ...
-- Open to: internships / junior security roles — see [Projects](/projects/) and [Contact](/contact/)
+See [Contact](/contact/). For security issues, read the [disclosure policy](/disclaimer/#responsible-disclosure).
 
 ## This site
 
-Static site built with [Astro](https://astro.build/) + [AstroPaper](https://github.com/satnaing/astro-paper), hosted on Cloudflare Pages. No cookies, no third-party trackers; privacy-friendly analytics only. Read the [disclaimer](/disclaimer/).
+Static site built with [Astro](https://astro.build/) + [AstroPaper](https://github.com/satnaing/astro-paper), hosted on Cloudflare Pages. No cookies, no third-party trackers; privacy-friendly analytics only. Source on [GitHub](https://github.com/LongPhamplus/OhMyBlog). Read the [disclaimer](/disclaimer/).
