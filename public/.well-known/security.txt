@@ -1,0 +1,6 @@
+Contact: mailto:you@example.com
+Expires: 2027-11-18T00:00:00.000Z
+Encryption: https://YOUR_PROJECT.pages.dev/pgp.asc
+Policy: https://YOUR_PROJECT.pages.dev/disclaimer/#responsible-disclosure
+Preferred-Languages: en, vi
+Canonical: https://YOUR_PROJECT.pages.dev/.well-known/security.txt

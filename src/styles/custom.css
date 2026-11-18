@@ -1,0 +1,49 @@
+/* Imported from src/styles/global.css:  @import "./custom.css";  */
+
+/* --- Filter buttons (Write-ups / Research) --- */
+.filter-btn {
+  border: 1px dashed var(--color-border, currentColor);
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.6rem;
+  font-family: var(--font-google-sans-code, monospace);
+}
+.filter-btn[aria-pressed="true"] {
+  border-style: solid;
+  color: var(--color-accent);
+}
+
+/* --- Callout conventions (rehype-callouts, obsidian theme) ---
+   > [!note]               Note
+   > [!warning]            Warning
+   > [!tip]- Spoiler       collapsed spoiler
+   > [!success]- Flag      collapsed flag                                    */
+.callout[data-callout="success"] .callout-title {
+  font-family: var(--font-google-sans-code, monospace);
+}
+.callout[data-callout="success"] .callout-content code {
+  word-break: break-all;
+}
+
+/* --- Mermaid --- */
+div.mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+div.mermaid:not([data-processed]) {
+  /* raw source while JS loads / when JS is off */
+  white-space: pre;
+  font-family: var(--font-google-sans-code, monospace);
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* --- Zoomable images --- */
+.medium-zoom-overlay,
+.medium-zoom-image--opened {
+  z-index: 50;
+}
+#article img:not(.no-zoom) {
+  cursor: zoom-in;
+}

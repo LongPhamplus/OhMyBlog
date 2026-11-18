@@ -1,0 +1,23 @@
+---
+// Rendered in <head> on every page.
+// Cloudflare Web Analytics: cookieless, no fingerprinting, free.
+// Option A (preferred): enable it in the Pages dashboard -> Metrics; Cloudflare injects the beacon.
+// Option B (manual): put your token below. Leave empty to disable.
+type Props = {
+  title: string;
+  description: string;
+};
+
+const CF_BEACON_TOKEN = "";
+---
+
+{
+  CF_BEACON_TOKEN && import.meta.env.PROD && (
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={JSON.stringify({ token: CF_BEACON_TOKEN })}
+    />
+  )
+}

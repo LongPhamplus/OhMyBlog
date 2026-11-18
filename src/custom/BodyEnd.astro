@@ -1,0 +1,34 @@
+---
+// Rendered right before </body> on every page. Bundled by Vite -> served from
+// /_astro/*.js, so it is covered by script-src 'self' (no CSP hash needed).
+---
+
+<script>
+  import mediumZoom from "medium-zoom";
+  import type { Zoom } from "medium-zoom";
+
+  let zoom: Zoom | undefined;
+
+  async function enhance() {
+    // 1. Click-to-zoom for article images (add class="no-zoom" to opt out)
+    zoom?.detach();
+    zoom = mediumZoom("#article img:not(.no-zoom)", { margin: 24 });
+
+    // 2. Mermaid: only downloaded on pages that actually contain a diagram
+    const nodes = document.querySelectorAll<HTMLElement>(
+      "div.mermaid:not([data-processed])"
+    );
+    if (nodes.length === 0) return;
+    const { default: mermaid } = await import("mermaid");
+    const dark = document.documentElement.getAttribute("data-theme") === "dark";
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: "strict",
+      theme: dark ? "dark" : "neutral",
+    });
+    await mermaid.run({ nodes: Array.from(nodes) });
+  }
+
+  // astro:page-load fires on first load and after every ClientRouter navigation
+  document.addEventListener("astro:page-load", enhance);
+</script>

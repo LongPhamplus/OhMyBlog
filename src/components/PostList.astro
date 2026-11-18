@@ -1,0 +1,115 @@
+---
+// Filterable list of posts. Filters are plain buttons + data attributes,
+// handled by a bundled script (CSP-friendly, works without JS: everything shown).
+import type { CollectionEntry } from "astro:content";
+import { getPostUrl } from "@/utils/getPostPaths";
+import Datetime from "./Datetime.astro";
+
+type Props = {
+  posts: CollectionEntry<"posts">[];
+  filters?: ("platform" | "category")[];
+};
+
+const { posts, filters = [] } = Astro.props;
+const values = (key: "platform" | "category") =>
+  [...new Set(posts.map(p => p.data[key]).filter(Boolean))].sort() as string[];
+---
+
+<div data-filter-root>
+  {
+    filters.map(key => (
+      <div class="mb-3 flex flex-wrap items-center gap-2 text-sm">
+        <span class="text-muted-foreground w-20 capitalize">{key}</span>
+        <button
+          type="button"
+          class="filter-btn"
+          data-filter={key}
+          data-value="all"
+          aria-pressed="true"
+        >
+          all
+        </button>
+        {values(key).map(v => (
+          <button
+            type="button"
+            class="filter-btn"
+            data-filter={key}
+            data-value={v}
+            aria-pressed="false"
+          >
+            {v}
+          </button>
+        ))}
+      </div>
+    ))
+  }
+
+  <ul class="mt-6">
+    {
+      posts.map(({ id, filePath, data }) => (
+        <li
+          class="my-6"
+          data-item
+          data-platform={data.platform}
+          data-category={data.category}
+        >
+          <a
+            href={getPostUrl(id, filePath, Astro.currentLocale)}
+            class="text-accent inline-block text-lg font-medium decoration-dashed underline-offset-4 hover:underline"
+          >
+            <h2>{data.title}</h2>
+          </a>
+          <div class="text-muted-foreground flex flex-wrap gap-x-3 text-sm">
+            <Datetime
+              pubDatetime={data.pubDatetime}
+              modDatetime={data.modDatetime}
+              timezone={data.timezone}
+            />
+            {data.platform && <span>[{data.platform}]</span>}
+            {data.category && <span>{data.category}</span>}
+            {data.difficulty && <span>{data.difficulty}</span>}
+            {data.event && <span>{data.event}</span>}
+          </div>
+          <p>{data.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const root = document.querySelector<HTMLElement>("[data-filter-root]");
+    if (!root) return;
+    const items = root.querySelectorAll<HTMLElement>("[data-item]");
+    const buttons = root.querySelectorAll<HTMLButtonElement>(
+      "button[data-filter]"
+    );
+
+    const apply = (key: string, value: string) => {
+      items.forEach(item => {
+        item.hidden = value !== "all" && item.dataset[key] !== value;
+      });
+      buttons.forEach(b => {
+        const active =
+          value === "all"
+            ? b.dataset.value === "all"
+            : b.dataset.filter === key && b.dataset.value === value;
+        b.setAttribute("aria-pressed", String(active));
+      });
+    };
+
+    buttons.forEach(b =>
+      b.addEventListener("click", () =>
+        apply(b.dataset.filter!, b.dataset.value!)
+      )
+    );
+
+    // deep links: /writeups/?platform=htb
+    const params = new URLSearchParams(location.search);
+    for (const key of ["platform", "category"]) {
+      const v = params.get(key);
+      if (v) apply(key, v);
+    }
+  });
+</script>
