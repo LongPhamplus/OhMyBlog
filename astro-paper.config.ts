@@ -2,11 +2,11 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://YOUR_PROJECT.pages.dev/",
+    url: "https://ohmyblog-730.pages.dev/",
     title: "YOUR_HANDLE",
     description: "Write-ups and research on web, binaries, Active Directory and DFIR.",
     author: "YOUR_NAME",
-    profile: "https://YOUR_PROJECT.pages.dev/about/",
+    profile: "https://ohmyblog-730.pages.dev/about/",
     ogImage: "default-og.jpg",
     lang: "en",
     timezone: "Asia/Ho_Chi_Minh",

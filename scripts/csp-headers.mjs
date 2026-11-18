@@ -53,7 +53,13 @@ if (pages === 0) {
 const scriptSrc = ["'self'", "'wasm-unsafe-eval'", ...[...hashes].sort()]; // wasm: Pagefind
 const connectSrc = ["'self'"];
 const frameSrc = [];
-if (FEATURES.giscus) { scriptSrc.push("https://giscus.app"); frameSrc.push("https://giscus.app"); }
+const styleSrc = ["'self'", "'unsafe-inline'"];
+if (FEATURES.giscus) {
+  // client.js loads the iframe and injects https://giscus.app/default.css into the host page
+  scriptSrc.push("https://giscus.app");
+  frameSrc.push("https://giscus.app");
+  styleSrc.push("https://giscus.app");
+}
 if (FEATURES.cloudflareAnalytics) {
   scriptSrc.push("https://static.cloudflareinsights.com");
   connectSrc.push("https://cloudflareinsights.com");
@@ -64,7 +70,7 @@ const csp = [
   `script-src ${scriptSrc.join(" ")}`,
   // Shiki + view transitions + medium-zoom + Mermaid write inline style attributes.
   // Style injection on a static site without user input is a low risk; script stays strict.
-  "style-src 'self' 'unsafe-inline'",
+  `style-src ${styleSrc.join(" ")}`,
   "img-src 'self' data:",
   "font-src 'self'",
   `connect-src ${connectSrc.join(" ")}`,

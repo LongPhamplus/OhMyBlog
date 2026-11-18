@@ -21,7 +21,7 @@ const BASE = process.env.BASE ?? "http://127.0.0.1:8788";
       }
       if (path.startsWith("/search/")) {
         await page.locator("input").first().fill("csp");
-        await page.waitForTimeout(1500);
+        await page.waitForSelector(".pagefind-ui__result", { timeout: 8000 }).catch(() => {});
         extra += " searchResults=" + await page.locator(".pagefind-ui__result").count();
       }
       console.log(`[${scheme}] ${path} errors=${errs.length}${extra}`);
