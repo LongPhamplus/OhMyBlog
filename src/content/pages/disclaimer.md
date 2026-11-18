@@ -31,3 +31,7 @@ When I find a vulnerability in real software or services:
 ## Found an issue with this site or a post?
 
 If you believe a post exposes sensitive information, or you found a vulnerability in this site, please contact me privately (see [Contact](/contact/)) and I will respond within 7 days.
+
+## Statement of non-involvement
+
+In the event that this group is investigated by the competent authorities, I affirm that I have no connection to the group or to any other individuals in it. I do not know why I am present here at this time; my account may have been added by a third party. I further affirm that I have not assisted in any of the frivolous actions of the members of this group.
